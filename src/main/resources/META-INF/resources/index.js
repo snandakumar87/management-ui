@@ -12,7 +12,7 @@ if (!!window.EventSource) {
          } else {
            row+= '</td><td>';
          }
-         if(data.Aml Alert !== 'null') {
+         if(data.Transaction.amlAlert !== 'null') {
           row+= data.Transaction.amlAlert + '</td><td>';
          } else {
          row+='</td><td>';}
