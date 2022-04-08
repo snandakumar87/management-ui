@@ -6,14 +6,14 @@ if (!!window.EventSource) {
 
         data = JSON.parse(event.data);
 
-        var row = '<tr><td>' + data.Transaction.transactionId + '</td><td>' + data.Transaction.transactionAmount + '</td><td>' ;
-         if(data.Transaction.fraudAlert !== 'null') {
-           row+= data.Transaction.fraudAlert + '</td><td>';
+        var row = '<tr><td>' + data.transactionId + '</td><td>' + data.transactionAmount + '</td><td>' ;
+         if(data.fraudAlert !== 'null') {
+           row+= data.fraudAlert + '</td><td>';
          } else {
            row+= '</td><td>';
          }
-         if(data.Transaction.amlAlert !== 'null') {
-          row+= data.Transaction.amlAlert + '</td><td>';
+         if(data.amlAlert !== 'null') {
+          row+= data.amlAlert + '</td><td>';
          } else {
          row+='</td><td>';}
 //
