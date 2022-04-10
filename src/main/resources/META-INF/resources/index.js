@@ -17,9 +17,8 @@ if (!!window.EventSource) {
          } else {
          row+='</td><td>';}
 
-         alert(row);
 
-         if(data.Transaction.amlAlert==='null' && data.Transaction.fraudAlert==='null'){
+         if(data.amlAlert==='null' && data.fraudAlert==='null'){
             row+='<div class="icon"><i class="ni ni-check-bold"></i></td>'
 
          } else {
