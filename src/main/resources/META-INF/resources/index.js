@@ -16,6 +16,8 @@ if (!!window.EventSource) {
           row+= data.amlAlert + '</td><td>';
          } else {
          row+='</td><td>';}
+
+         alert(row);
 //
 //         if(data.Transaction.amlAlert==='null' && data.Transaction.fraudAlert==='null'){
 //            row+='<div class="icon"><i class="ni ni-check-bold"></i></td>'
