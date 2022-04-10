@@ -5,7 +5,7 @@ if (!!window.EventSource) {
     eventSource.onmessage = function(event) {
 
         data = JSON.parse(event.data);
-        JSON.stringify(data);
+        alert(JSON.stringify(data));
 
         var row = '<tr><td>' + data.transactionId + '</td><td>' + data.transactionAmount + '</td><td>' ;
          if(data.fraudAlert !== 'null') {
