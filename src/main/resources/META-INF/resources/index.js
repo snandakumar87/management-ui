@@ -5,21 +5,20 @@ if (!!window.EventSource) {
     eventSource.onmessage = function(event) {
 
         data = JSON.parse(event.data);
-        alert(JSON.stringify(data));
 
-        var row = '<tr><td>' + data.transactionId + '</td><td>' + data.transactionAmount + '</td><td>' ;
-         if(data.fraudAlert !== 'null') {
-           row+= data.fraudAlert + '</td><td>';
+        var row = '<tr><td>' + data.data.transactionId + '</td><td>' + data.data.transactionAmount + '</td><td>' ;
+         if(data.data.fraudAlert !== 'null') {
+           row+= data.data.fraudAlert + '</td><td>';
          } else {
            row+= '</td><td>';
          }
-         if(data.amlAlert !== 'null') {
-          row+= data.amlAlert + '</td><td>';
+         if(data.data.amlAlert !== 'null') {
+          row+= data.data.amlAlert + '</td><td>';
          } else {
          row+='</td><td>';}
 
 
-         if(data.amlAlert==='null' && data.fraudAlert==='null'){
+         if(data.data.amlAlert==='null' && data.data.fraudAlert==='null'){
             row+='<div class="icon"><i class="ni ni-check-bold"></i></td>'
 
          } else {
