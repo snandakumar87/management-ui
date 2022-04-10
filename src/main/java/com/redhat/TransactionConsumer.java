@@ -28,8 +28,8 @@ public class TransactionConsumer {
     @Outgoing("txn")
     @Broadcast
     public String broadCastMessage(String transaction){
-        System.out.println(transaction);
-        return String.valueOf(transaction);
+
+        return transaction;
     }
 
 
