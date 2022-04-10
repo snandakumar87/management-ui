@@ -6,7 +6,7 @@ if (!!window.EventSource) {
 
         data = JSON.parse(event.data);
 
-        var row = '<tr><td>' + data + '</td><td>' + data.transactionAmount + '</td><td>' ;
+        var row = '<tr><td>' + data.transactionId + '</td><td>' + data.transactionAmount + '</td><td>' ;
          if(data.fraudAlert !== 'null') {
            row+= data.fraudAlert + '</td><td>';
          } else {
