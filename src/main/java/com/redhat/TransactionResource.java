@@ -22,9 +22,6 @@ import java.util.Map;
 @Path("/transaction")
 public class TransactionResource {
 
-    @Inject
-    @RestClient
-    ProcessService processService;
 
 
     @Inject
@@ -40,58 +37,6 @@ public class TransactionResource {
         System.out.println("here");
 
         return transactionPublisher;
-    }
-
-    @GET
-    @Path("/svg/{txnId}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public ProcessUIObject getSvg(@PathParam("txnId") Long txnId) throws JsonProcessingException {
-        System.out.println("came here"+txnId);
-        String response = processService.getProcess(String.valueOf(txnId));
-        System.out.println(response);
-
-        Map responseObj = new ObjectMapper().readValue(response,Map.class);
-        List processList = (List) responseObj.get("process-instance");
-        Map<String,String> map = (Map<String, String>) processList.get(0);
-
-        System.out.println(String.valueOf(map.get("process-instance-id")));
-
-        String svg = processService.getSvg(String.valueOf(map.get("process-instance-id")));
-
-        Map processVarMap=new ObjectMapper().readValue(processService.getProcessInstanceId(String.valueOf(map.get("process-instance-id"))), HashMap.class);
-
-        Map varMa = (Map) processVarMap.get("txn");
-
-        ProcessUIObject processUIObject = new ProcessUIObject();
-        processUIObject.setProcessVariables(varMa);
-        processUIObject.setSvg(svg);
-
-        List<TaskInstance> taskInstances = new ArrayList<>();
-
-        TaskInstance taskInstance;
-
-        String processInstanceId = String.valueOf(map.get("process-instance-id"));
-
-        Map taskListObj = new ObjectMapper().readValue(processService.getTasks(),Map.class);
-        List<Map> taskList = (List<Map>) taskListObj.get("task-summary");
-        System.out.println(taskList);
-        System.out.println(processInstanceId);
-
-        for(Map taskMapObj: taskList) {
-
-            if(String.valueOf(taskMapObj.get("task-proc-inst-id")).equals(processInstanceId)){
-                taskInstance = new TaskInstance();
-                taskInstance.setTaskId(String.valueOf(taskMapObj.get("task-id")));
-                taskInstance.setTaskName((String) taskMapObj.get("task-name"));
-                taskInstance.setStatus((String) taskMapObj.get("task-status"));
-                taskInstance.setOwner((String) taskMapObj.get("task-actual-owner"));
-                taskInstances.add(taskInstance);
-            }
-        }
-        processUIObject.setTaskList(taskInstances);
-
-
-        return processUIObject;
     }
 
 

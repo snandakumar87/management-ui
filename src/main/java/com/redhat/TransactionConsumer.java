@@ -24,25 +24,6 @@ public class TransactionConsumer {
 
     private static final Logger LOGGER = Logger.getLogger("TransactionCins");
 
-//    @Incoming("txn-from-kafka")
-//    public void receive(Transaction transaction) {
-//        System.out.println("inside consumer");
-//        LOGGER.infof("Received movie:", transaction.getId(), transaction.getAmount());
-//        try {
-//            if (transaction.getMerchantId().equals("MERCH0001") && transaction.getCountry().equals("IR")) {
-//                LOGGER.info("message check failed");
-//            } else if(transaction.getCountry().equals("US") && transaction.getMerchantId().equals("MERCH0002")){
-//                LOGGER.info("message check failed");
-//            } else {
-//                System.out.println("publised");
-//                final JsonObject jsonObject = JsonObject.mapFrom(transaction);
-//
-//            }
-//        }catch (Exception e){
-//            System.out.println("Lets handle it");
-//        }
-//    }
-//
     @Incoming("txn-kafka")
     @Outgoing("txn")
     @Broadcast
